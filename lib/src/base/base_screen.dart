@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:greemgrocer/src/home/home_tab.dart';
 
-class BaseScreen extends StatelessWidget {
+class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
+
+  @override
+  State<BaseScreen> createState() => _BaseScreenState();
+}
+
+class _BaseScreenState extends State<BaseScreen> {
+  int currrentIndex = 0;
+  final pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.red,
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: [
+          const HomeTab(),
+          Container(color: Colors.yellow),
+          Container(color: Colors.blue),
+          Container(color: Colors.purple),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            currrentIndex = index;
+            pageController.jumpToPage(index);
+          });
+        },
+        currentIndex: currrentIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.green,
         selectedItemColor: Colors.white,
