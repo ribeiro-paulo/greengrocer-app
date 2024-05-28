@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:greemgrocer/src/config/custom_colors.dart';
 
 class HomeTab extends StatelessWidget {
@@ -21,12 +22,39 @@ class HomeTab extends StatelessWidget {
           ],
         )),
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.shopping_cart,
-                color: CustomColor.customSwatchColor,
-              ))
+          Padding(
+            padding: const EdgeInsets.only(top: 15, right: 15),
+            child: GestureDetector(
+              onTap: () {},
+              child: Badge(
+                  backgroundColor: CustomColor.customContrastColor,
+                  label: const Text(
+                    '2',
+                  ),
+                  child: Icon(
+                    Icons.shopping_cart,
+                    color: CustomColor.customSwatchColor,
+                  )),
+            ),
+          )
+        ],
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                  hintText: "Pesquise aqui...",
+                  hintStyle: TextStyle(color: Colors.grey.shade600),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: CustomColor.customContrastColor,
+                  ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18))),
+            ),
+          ),
         ],
       ),
     );
