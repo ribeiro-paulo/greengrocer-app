@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greemgrocer/src/config/custom_colors.dart';
-import 'package:greemgrocer/src/home/components/category_tile.dart';
+import 'package:greemgrocer/src/pages/home/components/category_tile.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
