@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greemgrocer/src/config/custom_colors.dart';
+import 'package:greemgrocer/src/pages/cart/components/cart_tile.dart';
 import 'package:greemgrocer/src/services/utils_services.dart';
 import 'package:greemgrocer/src/config/app_data.dart' as app_data;
 
@@ -22,7 +23,7 @@ class CartTab extends StatelessWidget {
             child: ListView.builder(
                 itemCount: app_data.cartItems.length,
                 itemBuilder: (_, index) {
-                  return Text(app_data.cartItems[index].item.name);
+                  return CartTile(cartItemModel: app_data.cartItems[index]);
                 }),
           ),
           Container(
