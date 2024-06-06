@@ -78,12 +78,40 @@ class _CartTabState extends State<CartTab> {
                       fontWeight: FontWeight.bold),
                 ),
                 ElevatedButton(
-                    onPressed: () {}, child: const Text("Concluir pedido"))
+                    onPressed: () async {
+                      await showOrderConfirmation();
+                    },
+                    child: const Text("Concluir pedido"))
               ],
             ),
           )
         ],
       ),
     );
+  }
+
+  Future<bool?> showOrderConfirmation() {
+    return showDialog<bool>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Confirmação'),
+            content: const Text('Deseja realmente concluir o pedido?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text('Não'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text("Sim"),
+              )
+            ],
+          );
+        });
   }
 }
