@@ -1,5 +1,6 @@
 import 'package:greemgrocer/src/models/cart_item_model.dart';
 import 'package:greemgrocer/src/models/item.model.dart';
+import 'package:greemgrocer/src/models/user_model.dart';
 
 ItemModel apple = ItemModel(
   description:
@@ -78,3 +79,10 @@ List<CartItemModel> cartItems = [
   CartItemModel(item: grape, quantity: 5),
   CartItemModel(item: kiwi, quantity: 7),
 ];
+
+UserModel user = UserModel(
+    name: "Paulo",
+    email: "paulo@gmail.com",
+    phone: "9999999999",
+    cpf: '12345678912',
+    password: '15165416516');
