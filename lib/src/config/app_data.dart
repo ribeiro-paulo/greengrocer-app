@@ -92,9 +92,18 @@ List<OrderModel> orders = [
   OrderModel(
     id: 'asd1d1d3f1esd1',
     createdDateTime: DateTime.parse('2021-06-08 10:00:10.45'),
-    overdueDateTime: DateTime.parse('2021-06-08 11:00:10.45'),
+    overdueDateTime: DateTime.parse('2025-06-08 11:00:10.45'),
     items: cartItems,
-    status: 'pending_payment',
+    status: OrderStatus.pendingPayment,
+    copyAndPaste: 'asdqwasdqdefga181b',
+    total: 0,
+  ),
+  OrderModel(
+    id: 'asd1d1d3f1esd1',
+    createdDateTime: DateTime.parse('2024-06-06 10:00:10.45'),
+    overdueDateTime: DateTime.parse('2025-06-10 11:00:10.45'),
+    items: cartItems,
+    status: OrderStatus.delivered,
     copyAndPaste: 'asdqwasdqdefga181b',
     total: 0,
   )
