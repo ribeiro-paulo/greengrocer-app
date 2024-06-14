@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:greemgrocer/src/config/custom_colors.dart';
+import 'package:greemgrocer/src/models/order_model.dart';
 
 class OrderStatusWidget extends StatelessWidget {
-  final String status;
+  final OrderStatus status;
   final bool isOverdue;
+  final Map<OrderStatus, int> allStatus = <OrderStatus, int>{
+    OrderStatus.pendingPayment: 0,
+    OrderStatus.refunded: 1,
+    OrderStatus.paid: 2,
+    OrderStatus.preparingPurchase: 3,
+    OrderStatus.shipping: 4,
+    OrderStatus.delivered: 5
+  };
 
-  const OrderStatusWidget({
+  int get currentStatus => allStatus[status]!;
+  OrderStatusWidget({
     super.key,
     required this.status,
     required this.isOverdue,
@@ -13,18 +23,47 @@ class OrderStatusWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _StatusDot(
+        const _StatusDot(
           title: 'Pedido confirmado',
           isActive: true,
         ),
-        _CustomDivider(),
-        _StatusDot(
-          title: 'Pagamento',
-          isActive: false,
-        ),
+        const _CustomDivider(),
+        if (currentStatus == 1) ...[
+          const _StatusDot(
+            title: 'Pix estornado',
+            isActive: true,
+            backgroundColor: Colors.orange,
+          ),
+        ] else if (isOverdue) ...[
+          const _StatusDot(
+            title: 'Pagamento pix vencido',
+            isActive: true,
+            backgroundColor: Colors.red,
+          ),
+        ] else ...[
+          _StatusDot(
+            title: 'Pagamento',
+            isActive: currentStatus >= 2,
+          ),
+          const _CustomDivider(),
+          _StatusDot(
+            title: 'Preparando',
+            isActive: currentStatus >= 3,
+          ),
+          const _CustomDivider(),
+          _StatusDot(
+            title: 'Envio',
+            isActive: currentStatus >= 4,
+          ),
+          const _CustomDivider(),
+          _StatusDot(
+            title: 'Entregue',
+            isActive: currentStatus == 5,
+          ),
+        ]
       ],
     );
   }
@@ -50,11 +89,12 @@ class _CustomDivider extends StatelessWidget {
 class _StatusDot extends StatelessWidget {
   final bool isActive;
   final String title;
-  const _StatusDot({
-    super.key,
-    required this.isActive,
-    required this.title,
-  });
+  final Color? backgroundColor;
+  const _StatusDot(
+      {super.key,
+      required this.isActive,
+      required this.title,
+      this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +107,11 @@ class _StatusDot extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: CustomColor.customSwatchColor,
+              color: (backgroundColor ?? CustomColor.customSwatchColor),
             ),
-            color:
-                isActive ? CustomColor.customSwatchColor : Colors.transparent,
+            color: isActive
+                ? (backgroundColor ?? CustomColor.customSwatchColor)
+                : Colors.transparent,
           ),
           child: isActive
               ? const Icon(
