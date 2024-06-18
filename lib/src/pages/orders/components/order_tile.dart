@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greemgrocer/src/config/custom_colors.dart';
 import 'package:greemgrocer/src/models/cart_item_model.dart';
 import 'package:greemgrocer/src/models/order_model.dart';
 import 'package:greemgrocer/src/pages/orders/components/order_status_widget.dart';
@@ -33,6 +34,7 @@ class OrderTile extends StatelessWidget {
             ],
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             IntrinsicHeight(
               child: Row(
@@ -57,16 +59,48 @@ class OrderTile extends StatelessWidget {
                     width: 8,
                   ),
                   Expanded(
-                      flex: 2,
-                      child: OrderStatusWidget(
-                        status: order.status,
-                        isOverdue: order.overdueDateTime.isBefore(
-                          DateTime.now(),
-                        ),
-                      ))
+                    flex: 2,
+                    child: OrderStatusWidget(
+                      status: order.status,
+                      isOverdue: order.overdueDateTime.isBefore(
+                        DateTime.now(),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            )
+            ),
+            Text.rich(
+              TextSpan(
+                style: const TextStyle(fontSize: 20),
+                children: [
+                  const TextSpan(
+                    text: 'Total ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: utilsService.priceToCurrency(order.total),
+                  )
+                ],
+              ),
+            ),
+            Visibility(
+              visible: order.status == OrderStatus.pendingPayment,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  iconColor: Colors.white,
+                ),
+                onPressed: () {},
+                icon: const Icon(Icons.pix),
+                label: const Text(
+                  'Ver QR Code Pix',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
           ],
         ),
       ),

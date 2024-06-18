@@ -96,7 +96,7 @@ List<OrderModel> orders = [
     items: cartItems,
     status: OrderStatus.pendingPayment,
     copyAndPaste: 'asdqwasdqdefga181b',
-    total: 0,
+    total: 19,
   ),
   OrderModel(
     id: 'asd1d1d3f1esd1',
