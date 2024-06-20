@@ -26,10 +26,9 @@ class CategoryTile extends StatelessWidget {
           child: Text(
             category,
             style: TextStyle(
-                color:
-                    isSelected ? Colors.white : CustomColor.customContrastColor,
-                fontWeight: FontWeight.bold,
-                fontSize: isSelected ? 16 : 14),
+                color: isSelected ? Colors.white : Colors.grey.shade400,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                fontSize: 14),
           ),
         ),
       ),

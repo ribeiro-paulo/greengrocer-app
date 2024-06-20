@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greemgrocer/src/config/custom_colors.dart';
 import 'package:greemgrocer/src/pages/common_widgets/custom_text_field.dart';
 import 'package:greemgrocer/src/config/app_data.dart' as app_mock;
 
@@ -14,7 +15,7 @@ class _ProfileTabState extends State<ProfileTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: CustomColor.customSwatchColor,
         title: const Text(
           "Persil usuário",
           style: TextStyle(color: Colors.white),

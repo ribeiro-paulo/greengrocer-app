@@ -89,8 +89,8 @@ class SignInScreen extends StatelessWidget {
                           onPressed: () {},
                           child: Text(
                             "Esqueceu a senha?",
-                            style: TextStyle(
-                                color: CustomColor.customContrastColor),
+                            style:
+                                TextStyle(color: CustomColor.customSwatchColor),
                           )),
                     ),
                     Padding(
@@ -116,9 +116,6 @@ class SignInScreen extends StatelessWidget {
                     SizedBox(
                       height: 50,
                       child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                              side: const BorderSide(
-                                  width: 1, color: Colors.green)),
                           onPressed: () {
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (c) {
