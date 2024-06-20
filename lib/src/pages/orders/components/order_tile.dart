@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:greemgrocer/src/config/custom_colors.dart';
 import 'package:greemgrocer/src/models/cart_item_model.dart';
 import 'package:greemgrocer/src/models/order_model.dart';
+import 'package:greemgrocer/src/pages/common_widgets/payment_dialog.dart';
 import 'package:greemgrocer/src/pages/orders/components/order_status_widget.dart';
 import 'package:greemgrocer/src/services/utils_services.dart';
 
@@ -53,8 +54,8 @@ class OrderTile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const VerticalDivider(
-                    color: Colors.grey,
+                  VerticalDivider(
+                    color: Colors.grey.shade100,
                     thickness: 2,
                     width: 8,
                   ),
@@ -70,6 +71,7 @@ class OrderTile extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 10),
             Text.rich(
               TextSpan(
                 style: const TextStyle(fontSize: 20),
@@ -86,14 +88,23 @@ class OrderTile extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 10),
             Visibility(
               visible: order.status == OrderStatus.pendingPayment,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: CustomColor.customSwatchColor,
                   iconColor: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (_) {
+                        return PaymentDialog(
+                          order: order,
+                        );
+                      });
+                },
                 icon: const Icon(Icons.pix),
                 label: const Text(
                   'Ver QR Code Pix',

@@ -19,12 +19,17 @@ class _HomeTabState extends State<HomeTab> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: CustomColor.customSwatchColor,
         title: Text.rich(TextSpan(
           style: const TextStyle(fontSize: 30),
           children: [
-            TextSpan(
-                text: 'Green',
-                style: TextStyle(color: CustomColor.customSwatchColor)),
+            const TextSpan(
+              text: 'Green',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             TextSpan(
                 text: 'grocer',
                 style: TextStyle(color: CustomColor.customContrastColor))
@@ -36,13 +41,13 @@ class _HomeTabState extends State<HomeTab> {
             child: GestureDetector(
               onTap: () {},
               child: Badge(
-                  backgroundColor: CustomColor.customContrastColor,
+                  backgroundColor: CustomColor.customSwatchColor,
                   label: const Text(
                     '2',
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.shopping_cart,
-                    color: CustomColor.customSwatchColor,
+                    color: Colors.white70,
                   )),
             ),
           )

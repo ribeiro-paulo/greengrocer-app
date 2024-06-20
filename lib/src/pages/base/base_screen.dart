@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greemgrocer/src/config/custom_colors.dart';
 import 'package:greemgrocer/src/pages/cart/cart_tab.dart';
 import 'package:greemgrocer/src/pages/home/home_tab.dart';
 import 'package:greemgrocer/src/pages/orders/orders_tab.dart';
@@ -37,7 +38,7 @@ class _BaseScreenState extends State<BaseScreen> {
         },
         currentIndex: currrentIndex,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.green,
+        backgroundColor: CustomColor.customSwatchColor,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white.withAlpha(100),
         items: const [

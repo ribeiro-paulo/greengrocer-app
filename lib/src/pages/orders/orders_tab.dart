@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greemgrocer/src/config/app_data.dart' as app_data;
+import 'package:greemgrocer/src/config/custom_colors.dart';
 import 'package:greemgrocer/src/pages/orders/components/order_tile.dart';
 
 class OrdersTab extends StatelessWidget {
@@ -13,7 +14,7 @@ class OrdersTab extends StatelessWidget {
           "Pedidos",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: CustomColor.customSwatchColor,
       ),
       body: ListView.separated(
           padding: const EdgeInsetsDirectional.all(16),
