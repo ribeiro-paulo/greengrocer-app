@@ -6,7 +6,14 @@ import 'package:greemgrocer/src/services/utils_services.dart';
 
 class ItemTile extends StatelessWidget {
   final ItemModel item;
-  ItemTile({super.key, required this.item});
+  final GlobalKey widgetKey = GlobalKey();
+  final void Function(GlobalKey) onClick;
+
+  ItemTile({
+    super.key,
+    required this.item,
+    required this.onClick,
+  });
 
   UtilsService utilsService = UtilsService();
   @override
@@ -33,7 +40,13 @@ class ItemTile extends StatelessWidget {
                 children: [
                   Expanded(
                       child: Hero(
-                          tag: item.imgUrl, child: Image.asset(item.imgUrl))),
+                          tag: item.imgUrl,
+                          child: Container(
+                            key: widgetKey,
+                            child: Image.asset(
+                              item.imgUrl,
+                            ),
+                          ))),
                   Text(
                     item.name,
                     style: const TextStyle(
@@ -66,7 +79,9 @@ class ItemTile extends StatelessWidget {
             top: 4,
             right: 4,
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                onClick(widgetKey);
+              },
               child: Container(
                 decoration: BoxDecoration(
                     color: CustomColor.customSwatchColor,
