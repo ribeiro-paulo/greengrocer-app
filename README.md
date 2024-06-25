@@ -1,6 +1,9 @@
-# greemgrocer
+# Greengrocer
 
-A new Flutter project.
+Welcome to **Greengrocer**. Whether you are looking for organic fruits, seasonal vegetables, or unique local products, Greengrocer has you covered.
+
+![Greengrocer Logo](assets/github.png)
+
 
 ## Getting Started
 
