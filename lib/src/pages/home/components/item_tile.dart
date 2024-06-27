@@ -4,18 +4,35 @@ import 'package:greemgrocer/src/models/item.model.dart';
 import 'package:greemgrocer/src/pages/product/product_screen.dart';
 import 'package:greemgrocer/src/services/utils_services.dart';
 
-class ItemTile extends StatelessWidget {
+class ItemTile extends StatefulWidget {
   final ItemModel item;
-  final GlobalKey widgetKey = GlobalKey();
   final void Function(GlobalKey) onClick;
 
-  ItemTile({
+  const ItemTile({
     super.key,
     required this.item,
     required this.onClick,
   });
 
+  @override
+  State<ItemTile> createState() => _ItemTileState();
+}
+
+class _ItemTileState extends State<ItemTile> {
+  final GlobalKey widgetKey = GlobalKey();
+
   UtilsService utilsService = UtilsService();
+
+  IconData tileIcon = Icons.add_shopping_cart_outlined;
+
+  Future<void> switchIcon() async {
+    setState(() => tileIcon = Icons.check);
+
+    await Future.delayed(const Duration(milliseconds: 1500));
+
+    setState(() => tileIcon = Icons.add_shopping_cart_outlined);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,7 +41,7 @@ class ItemTile extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (c) {
               return ProductScreen(
-                item: item,
+                item: widget.item,
               );
             }));
           },
@@ -40,29 +57,29 @@ class ItemTile extends StatelessWidget {
                 children: [
                   Expanded(
                       child: Hero(
-                          tag: item.imgUrl,
+                          tag: widget.item.imgUrl,
                           child: Container(
                             key: widgetKey,
                             child: Image.asset(
-                              item.imgUrl,
+                              widget.item.imgUrl,
                             ),
                           ))),
                   Text(
-                    item.name,
+                    widget.item.name,
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Row(
                     children: [
                       Text(
-                        utilsService.priceToCurrency(item.price),
+                        utilsService.priceToCurrency(widget.item.price),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             color: CustomColor.customSwatchColor),
                       ),
                       Text(
-                        '/${item.unit}',
+                        '/${widget.item.unit}',
                         style: TextStyle(
                             color: Colors.grey.shade500,
                             fontWeight: FontWeight.bold,
@@ -86,7 +103,8 @@ class ItemTile extends StatelessWidget {
               child: Material(
                 child: InkWell(
                   onTap: () {
-                    onClick(widgetKey);
+                    switchIcon();
+                    widget.onClick(widgetKey);
                   },
                   child: Ink(
                     decoration: BoxDecoration(
@@ -94,8 +112,8 @@ class ItemTile extends StatelessWidget {
                     ),
                     height: 40,
                     width: 35,
-                    child: const Icon(
-                      Icons.add_shopping_cart_outlined,
+                    child: Icon(
+                      tileIcon,
                       color: Colors.white,
                     ),
                   ),
