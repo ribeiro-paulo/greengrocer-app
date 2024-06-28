@@ -1,6 +1,7 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:greemgrocer/src/config/custom_colors.dart';
+import 'package:greemgrocer/src/pages/common_widgets/app_name_widget.dart';
 import 'package:greemgrocer/src/pages/home/components/category_tile.dart';
 import 'package:greemgrocer/src/config/app_data.dart' as mock;
 import 'package:greemgrocer/src/pages/home/components/item_tile.dart';
@@ -43,21 +44,7 @@ class _HomeTabState extends State<HomeTab> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: CustomColor.customSwatchColor,
-          title: Text.rich(TextSpan(
-            style: const TextStyle(fontSize: 30),
-            children: [
-              const TextSpan(
-                text: 'Green',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              TextSpan(
-                  text: 'grocer',
-                  style: TextStyle(color: CustomColor.customContrastColor))
-            ],
-          )),
+          title: const AppNameWidget(),
           actions: [
             Padding(
               padding: const EdgeInsets.only(top: 15, right: 15),
