@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:greemgrocer/src/config/custom_colors.dart';
 import 'package:greemgrocer/src/pages/auth/sign_in_screen.dart';
 import 'package:greemgrocer/src/pages/common_widgets/app_name_widget.dart';
+import 'package:greemgrocer/src/pages_routes/app_pages.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,13 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
         seconds: 2,
       ),
       () {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (c) {
-              return const SignInScreen();
-            },
-          ),
-        );
+        Get.offNamed(PagesRoutes.signInRoute);
       },
     );
   }
